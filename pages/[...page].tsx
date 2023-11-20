@@ -10,28 +10,22 @@ import { GetStaticProps } from "next";
 // Replace with your Public API Key
 builder.init("42f4c42db6174f26be1b39cf0fd5d53d");
 
-// Define a function that fetches the Builder
-// content for a given page
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  // Fetch the builder content for the given page
+export async function getStaticProps({ params }) {
   const page = await builder
-    .get("page", {
+    .get('page', {
       userAttributes: {
-        urlPath: "/" + ((params?.page as string[])?.join("/") || ""),
+        urlPath: '/' + (params?.page?.join('/') || ''),
       },
     })
     .toPromise();
 
-  // Return the page content as props
   return {
     props: {
       page: page || null,
     },
-    // Revalidate the content every 5 seconds
-    revalidate: 5,
+    revalidate: 5
   };
-};
-
+}
 // Define a function that generates the
 // static paths for all pages in Builder
 export async function getStaticPaths() {
