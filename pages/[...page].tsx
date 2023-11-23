@@ -9,6 +9,7 @@ import { GetStaticProps } from "next";
 
 // Replace with your Public API Key
 builder.init("42f4c42db6174f26be1b39cf0fd5d53d");
+//things
 //@ts-ignore
 export async function getStaticProps({ params }) {
   const page = await builder
